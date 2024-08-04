@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "this is a duck with adhd",
+    "description": "duck go quaaaack",
+    "version": "1.0",
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "hi.png"
+    },
+    "content_scripts": [
+        {
+            "js": ["script.js"], 
+            "matches": [
+                "https://*.youtube.com/*",
+                "https://dev.to/"                
+            ]
+        }
+    ],
+    "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+
+    "host_permissions": [
+        "https://*.youtube.com/*"
+    ],
+
+    "permissions": [
+    "tabs",
+    "activeTab", 
+    "webNavigation",
+    "scripting"
+    ]
+
+    
+  }
