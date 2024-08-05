@@ -4,32 +4,53 @@
 const observer = new MutationObserver((mutations, obs) => {
   let mainpage = document.getElementById('contents');
   let chips = document.getElementById('chips-wrapper');
-  let alertIccon = document.querySelector('ytd-notification-topbar-button-renderer')
-  let dd = document.getElementsByClassName('style-scope ytd-mini-guide-renderer')
-  let thumb = document.getElementsByTagName('ytd-thumbnail')
-  let v = document.getElementsByTagName('ytd-thumbnail')
+  let alertIcon = document.querySelector('ytd-notification-topbar-button-renderer');
+  let shortnavOutter = document.getElementsByClassName('style-scope ytd-mini-guide-renderer');
+  let thumbs = document.getElementsByTagName('ytd-thumbnail');
+  // let c = document.getElementsByClassName('style-scope ytd-guide-renderer')
+  // let short = document.getElementsByTagName('ytd-guide-entry-renderer')
 
-  if (mainpage) {
-    mainpage.style.display = "none";
-    chips.style.display = "none";
-    thumb.style.display = "none";
-    alertIccon.style.display = "none";
-   
-    dd[2].remove()
-    
-    obs.disconnect(); // Stop observing after the element is found and removed
-  }
 
-  // if(v){
-  //   for (let i = 0; i < v.length; i++) {
-  //     v[i].style.display = 'none';
-  //   }
-  //   alertIccon.style.display = "none";
 
-  //   obs.disconnect(); // Stop observing after the element is found and removed
+  console.log(mainpage, chips,alertIcon,shortnavOutter,thumbs)
+  // if(short){
+  //   short[1].style.display = "none";
+  // }
+
+  // if(c){
+  //   c[3].style.display = "none";
+  //   c[2].style.display = "none";
 
   // }
+  if (mainpage) {
+    mainpage.style.display = "none";
+  }
+  
+  if (chips) {
+    chips.style.display = "none";
+  }
+
+  if (alertIcon) {
+    alertIcon.style.display = "none";
+  }
+
+  if (shortnavOutter.length > 2) {
+    shortnavOutter[2].style.display = "none";
+  }
+
+  if (thumbs.length > 0) {
+    for (let thumb of thumbs) {
+      thumb.style.display = "none";
+    }
+  }
+
+  // Check if all elements have been handled, then disconnect the observer
+  if (mainpage && chips && alertIcon && shortnavOutter.length > 2 && thumbs.length > 0) {
+    console.log('Elements hidden');
+    obs.disconnect();
+  }
 });
+
 
 // Start observing the document for changes in the child nodes
 observer.observe(document, { childList: true, subtree: true });
@@ -37,14 +58,6 @@ observer.observe(document, { childList: true, subtree: true });
 
 
 
-
-let h = document.querySelector('ytd-notification-topbar-button-renderer')
-h.remove()
-
-setTimeout(()=>{
-  let h = document.querySelector('ytd-notification-topbar-button-renderer')
-  h.remove()
-},500)
 
 // let d = document.querySelectorAll('.style-scope ytd-thumbnail')
 
