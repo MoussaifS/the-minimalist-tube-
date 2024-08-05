@@ -1,3 +1,4 @@
+alert('script script')
 
 // let x = document.getElementById('page-manager')
 // x.remove()
@@ -9,7 +10,7 @@ const observer = new MutationObserver((mutations, obs) => {
   let thumbs = document.getElementsByTagName('ytd-thumbnail');
   // let c = document.getElementsByClassName('style-scope ytd-guide-renderer')
   // let short = document.getElementsByTagName('ytd-guide-entry-renderer')
-
+  let gray = document.getElementsByTagName('yt-image')
 
 
   console.log(mainpage, chips,alertIcon,shortnavOutter,thumbs)
@@ -21,7 +22,9 @@ const observer = new MutationObserver((mutations, obs) => {
   //   c[3].style.display = "none";
   //   c[2].style.display = "none";
 
-  // }
+  
+  
+
   if (mainpage) {
     mainpage.style.display = "none";
   }

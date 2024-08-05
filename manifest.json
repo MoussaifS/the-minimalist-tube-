@@ -9,10 +9,15 @@
     },
     "content_scripts": [
         {
+            "js": ["subscriptions_script.js"],
+            "matches": [
+              "https://www.youtube.com/feed/subscriptions"
+            ]
+        },        
+        {
             "js": ["script.js"], 
             "matches": [
-                "https://*.youtube.com/*",
-                "https://dev.to/"                
+                "https://*.youtube.com/"
             ]
         }
     ],
