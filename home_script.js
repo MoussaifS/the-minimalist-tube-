@@ -1,5 +1,6 @@
-alert('script script')
+import { alert } from "./script_functions";
 
+alert('this is home')
 // let x = document.getElementById('page-manager')
 // x.remove()
 const observer = new MutationObserver((mutations, obs) => {

@@ -8,18 +8,32 @@
       "default_icon": "hi.png"
     },
     "content_scripts": [
+      {
+        "js": ["subscriptions_script.js"],
+        "matches": [
+            "https://www.youtube.com/feed/subscriptions"
+        ],
+        "type": "module"
+    },   
         {
-            "js": ["subscriptions_script.js"],
-            "matches": [
-              "https://www.youtube.com/feed/subscriptions"
-            ]
-        },        
-        {
-            "js": ["script.js"], 
+            "js": ["home_script.js"], 
             "matches": [
                 "https://*.youtube.com/"
-            ]
-        }
+            ],
+            "type": "module"
+        },
+        {
+          "js": ["result_script.js"], 
+          "matches": [
+            "https://www.youtube.com/results?search_query=*"
+          ]
+      },
+      {
+        "js": ["watch_script.js"], 
+        "matches": [
+          "https://www.youtube.com/watch?*"
+        ]
+    }
     ],
     "background": {
     "service_worker": "background.js",

@@ -1,14 +1,16 @@
-alert('sub script')
+
 
 // Function to check for URL changes and notify the background script
+import { alerting } from "./script_functions.js";
 
-
+alerting('sub script')
 
 
 const observer = new MutationObserver((mutations, obs) => {
     let alertIcon = document.querySelector('ytd-notification-topbar-button-renderer');
     let shortnavOutter = document.getElementsByClassName('style-scope ytd-mini-guide-renderer');
     console.log(alertIcon,shortnavOutter)
+    let thumbs = document.getElementsByTagName('ytd-thumbnail');
 
     //chatgpt
     
