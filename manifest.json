@@ -9,28 +9,25 @@
     },
     "content_scripts": [
       {
-        "js": ["subscriptions_script.js"],
+        "js": ["script.js"],
         "matches": [
             "https://www.youtube.com/feed/subscriptions"
-        ],
-        "type": "module"
+        ]
     }, 
         {
-            "js": ["home_script.js"], 
+            "js": ["script.js"], 
             "matches": [
                 "https://*.youtube.com/"
-            ],
-            "type": "module",
-            "css": ["script.css"]
+            ]
         },
         {
-          "js": ["result_script.js"], 
+          "js":  ["script.js"], 
           "matches": [
             "https://www.youtube.com/results?search_query=*"
           ]
       },
       {
-        "js": ["watch_script.js"], 
+        "js":  ["script.js"], 
         "matches": [
           "https://www.youtube.com/watch?*"
         ]

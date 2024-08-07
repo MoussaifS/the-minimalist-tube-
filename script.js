@@ -1,60 +1,99 @@
+const {
+  host, hostname, href, origin, pathname, port, protocol, search
+} = window.location;
 
-// alert('new page')
+console.log(pathname);
 
+function hideElementById(id) {
+  const element = document.getElementById(id);
+  if (element) element.style.display = 'none';
+}
 
-// function mainContent() {
-//     document.getElementById('contents').style.display = 'none';
-// }
+function hideElementByQuerySelector(selector) {
+  const element = document.querySelector(selector);
+  if (element) element.style.display = 'none';
+}
 
+function hideElementsByClass(className, index = 0) {
+  const elements = document.getElementsByClassName(className);
+  if (elements.length > index) elements[index].style.display = 'none';
+}
 
-// const {
-//     host, hostname, href, origin, pathname, port, protocol, search
-//   } = window.location
-  
-//   console.log(pathname)
-  
-//   const observer = new MutationObserver((mutations, obs) => {
-//     let chips = document.getElementById('chips-wrapper');
-//     let alertIcon = document.querySelector('ytd-notification-topbar-button-renderer');
-//     let shortnavOutter = document.getElementsByClassName('style-scope ytd-mini-guide-renderer');
-//     let thumbs = document.getElementsByTagName('ytd-thumbnail');
-//     // let c = document.getElementsByClassName('style-scope ytd-guide-renderer')
-//     // let short = document.getElementsByTagName('ytd-guide-entry-renderer')
-//     let gray = document.getElementsByTagName('yt-image')
-  
-  
-//     console.log(mainpage, chips,alertIcon,shortnavOutter,thumbs)
-    
-  
-    
-    
-  
-   
-//     if (chips) {
-//       chips.style.display = "none";
-//     }
-  
-//     if (alertIcon) {
-//       alertIcon.style.display = "none";
-//     }
-  
-//     if (shortnavOutter.length > 2) {
-//       shortnavOutter[2].style.display = "none";
-//     }
-  
-//     if (thumbs.length > 0) {
-//       for (let thumb of thumbs) {
-//         thumb.style.display = "none";
-//       }
-//     }
-  
-//     // Check if all elements have been handled, then disconnect the observer
-//     if  (mainpage && chips && alertIcon && shortnavOutter.length > 2 && thumbs.length > 0) {
-//       console.log('Elements hidden');
-//       obs.disconnect();
-//     }
-//   });
+function hideElementsByTagName(tagName) {
+  const elements = document.getElementsByTagName(tagName);
+  for (let element of elements) {
+    element.style.display = 'none';
+  }
+}
 
-//   // Start observing the document for changes in the child nodes
-//   observer.observe(document, { childList: true, subtree: true });
-  
+function hideElementsByTagNameAndIndex(tagName, index = 0) {
+  const elements = document.getElementsByTagName(tagName);
+  if (elements.length > index) elements[index].style.display = 'none';
+}
+
+function applyGrayscale() {
+  const app = document.getElementsByTagName('ytd-app')[0];
+  if (app) app.style.filter = 'grayscale(1)';
+}
+
+function mainContent() {
+  hideElementById('contents');
+}
+
+function alertIcon() {
+  hideElementByQuerySelector('ytd-notification-topbar-button-renderer');
+}
+
+function suggestionChips() {
+  hideElementById('chips-wrapper');
+}
+
+function shortmainIcon() {
+  hideElementsByClass('style-scope ytd-mini-guide-renderer', 2);
+}
+
+function thumbnail() {
+  hideElementsByTagName('ytd-thumbnail');
+}
+
+function shortShelf() {
+  hideElementsByTagNameAndIndex('ytd-rich-shelf-renderer');
+}
+
+function promoteSparkles() {
+  hideElementsByTagName('ytd-promoted-sparkles-web-renderer');
+}
+
+function watchPage() {
+  alertIcon();
+  thumbnail();
+}
+
+function resultPage() {
+  alertIcon();
+  thumbnail();
+  shortmainIcon();
+}
+
+function subscriptionsPage() {
+  applyGrayscale();
+  alertIcon();
+  shortShelf();
+  shortmainIcon();
+}
+
+function homePage() {
+  shortmainIcon();
+  suggestionChips();
+  alertIcon();
+  mainContent();
+}
+
+const observer = new MutationObserver((mutations, obs) => {
+  watchPage();
+  console.log('Elements hidden');
+  obs.disconnect();
+});
+
+// Start observing the document for changes in the child nodes
+observer.observe(document, { childList: true, subtree: true });
