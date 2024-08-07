@@ -1,33 +1,20 @@
 
 
 // Function to check for URL changes and notify the background script
-import { alerting } from "./script_functions.js";
 
-alerting('sub script')
+
 
 
 const observer = new MutationObserver((mutations, obs) => {
     let alertIcon = document.querySelector('ytd-notification-topbar-button-renderer');
     let shortnavOutter = document.getElementsByClassName('style-scope ytd-mini-guide-renderer');
-    console.log(alertIcon,shortnavOutter)
-    let thumbs = document.getElementsByTagName('ytd-thumbnail');
+    let grayscale = document.getElementsByTagName('ytd-app');
+    let shortShelf = document.getElementsByTagName('ytd-rich-shelf-renderer')
 
-    //chatgpt
-    
-   // Create a new style element
-const style = document.createElement('style');
-
-// Set the CSS rule to apply grayscale to the 'ytd-rich-item-renderer' elements
-
-
-    let ff = document.getElementsByTagName('ytd-app');
-    if (ff.length > 0) {
-        ff[0].style.filter = 'grayscale(1)';
+    if (grayscale.length > 0) {
+        grayscale[0].style.filter = 'grayscale(1)';
     }
 
-
-    let shortShelf = document.getElementsByTagName('ytd-rich-shelf-renderer')
-    
     if(shortShelf){
         shortShelf[0].style.display = "none";
     }
@@ -40,7 +27,6 @@ const style = document.createElement('style');
       shortnavOutter[2].style.display = "none";
     }
   
-    // Check if all elements have been handled, then disconnect the observer
     if (alertIcon && shortnavOutter.length > 2 && shortShelf  ) {
       console.log('shit is  hidden');
       obs.disconnect();

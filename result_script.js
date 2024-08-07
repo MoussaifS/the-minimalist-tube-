@@ -1,4 +1,3 @@
-alerting('result script')
 
 const observer = new MutationObserver((mutations, obs) => {
     let alertIcon = document.querySelector('ytd-notification-topbar-button-renderer');

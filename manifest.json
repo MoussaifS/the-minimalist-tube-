@@ -14,13 +14,14 @@
             "https://www.youtube.com/feed/subscriptions"
         ],
         "type": "module"
-    },   
+    }, 
         {
             "js": ["home_script.js"], 
             "matches": [
                 "https://*.youtube.com/"
             ],
-            "type": "module"
+            "type": "module",
+            "css": ["script.css"]
         },
         {
           "js": ["result_script.js"], 
